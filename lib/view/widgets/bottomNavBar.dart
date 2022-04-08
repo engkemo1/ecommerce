@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 
+import 'package:ecommerce/constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: ClipRRect(
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xffF2F2F2),
+
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: ImageIcon(

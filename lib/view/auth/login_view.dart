@@ -16,7 +16,8 @@ class LoginView extends GetWidget<AuthViewModel> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
-        body: SingleChildScrollView(
+        backgroundColor:c,
+        body:SafeArea(child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
                 right: 16.w, left: 16.w, top: 126.h, bottom: 42.h),
@@ -32,11 +33,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CustomText(
-                                text: 'Welcome,',
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Image.asset("assets/sale.png",height: 120,width: 120,),
                               GestureDetector(
                                 onTap: () {
                                   Get.to(RegisterView());
@@ -49,20 +46,13 @@ class LoginView extends GetWidget<AuthViewModel> {
                               ),
                             ],
                           ),
+
                           SizedBox(
-                            height: 10.h,
-                          ),
-                          CustomText(
-                            text: 'Sign in to Continue',
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(
-                            height: 48.h,
+                            height: 20.h,
                           ),
                           CustomTextFormField(
                             title: 'Email',
-                            hintText: 'ahmedelsayed@gmail.com',
+                            hintText: 'YourEmailAddress',
                             keyboardType: TextInputType.emailAddress,
                             validatorFn: (value) {
                               if (value!.isEmpty)
@@ -145,7 +135,7 @@ class LoginView extends GetWidget<AuthViewModel> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
 

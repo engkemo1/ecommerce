@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../constants.dart';
 import '../../core/viewmodel/auth_viewmodel.dart';
 import 'login_view.dart';
 import '../widgets/custom_text.dart';
@@ -14,8 +15,9 @@ class RegisterView extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: c,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(130.h),
+        preferredSize: Size.fromHeight(100.h),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
@@ -24,6 +26,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               IconButton(
                 padding: EdgeInsets.only(left: 16.w, bottom: 30.h),
                 onPressed: () {
@@ -51,17 +54,22 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        CustomText(
-                          text: 'Sign Up',
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        Row(children: [
+                          CustomText(
+                            text: 'Sign Up',
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          Image.asset("assets/sale.png",height: 120,width: 120,),
+
+                        ],mainAxisAlignment: MainAxisAlignment.spaceBetween,),
+
                         SizedBox(
-                          height: 48.h,
+                          height: 20.h,
                         ),
                         CustomTextFormField(
                           title: 'Name',
-                          hintText: 'Ahmed Elsayed',
+                          hintText: 'Your Name',
                           validatorFn: (value) {
                             if (value!.isEmpty || value.length < 4)
                               return 'Please enter valid name.';
@@ -75,7 +83,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                         ),
                         CustomTextFormField(
                           title: 'Email',
-                          hintText: 'ahmedelsayed@gmail.com',
+                          hintText: 'Your Email',
                           keyboardType: TextInputType.emailAddress,
                           validatorFn: (value) {
                             if (value!.isEmpty)
