@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,14 +17,18 @@ class LoginView extends GetWidget<AuthViewModel> {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) => Scaffold(
-        backgroundColor:c,
+        backgroundColor:d,
         body:SafeArea(child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
                 right: 16.w, left: 16.w, top: 126.h, bottom: 42.h),
             child: Column(
               children: [
-                Card(
+                Container(
+                  decoration: BoxDecoration(
+                    color: c,
+borderRadius: BorderRadius.only(topRight: Radius.circular(150),bottomRight:Radius.circular(50),bottomLeft: Radius.circular(150),topLeft: Radius.circular(50) )
+                  ),
                   child: Padding(
                     padding: EdgeInsets.all(16.h),
                     child: Form(
@@ -34,16 +39,17 @@ class LoginView extends GetWidget<AuthViewModel> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                             Image.asset("assets/sale.png",height: 120,width: 120,),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.to(RegisterView());
-                                },
-                                child: CustomText(
-                                  text: 'Sign Up',
-                                  fontSize: 18,
-                                  color: primaryColor,
-                                ),
+                            Padding(padding: EdgeInsets.only(right: 10),child:   GestureDetector(
+                              onTap: () {
+                                Get.to(RegisterView());
+                              },
+                              child: CustomText(
+                                text: 'Sign Up',
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: p,
                               ),
+                            ),)
                             ],
                           ),
 

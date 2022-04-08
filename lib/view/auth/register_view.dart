@@ -15,12 +15,12 @@ class RegisterView extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: c,
+      backgroundColor: p,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.h),
         child: AppBar(
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: d,
           automaticallyImplyLeading: false,
           flexibleSpace: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -47,7 +47,8 @@ class RegisterView extends GetWidget<AuthViewModel> {
               EdgeInsets.only(right: 16.w, left: 16.w, top: 32.h, bottom: 44.h),
           child: Column(
             children: [
-              Card(
+              Container(
+                color: c,
                 child: Padding(
                   padding: EdgeInsets.all(16.h),
                   child: Form(

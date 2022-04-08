@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
           children: [
             //Background of Drawer
             Container(
-              decoration: BoxDecoration(color: c),
+              decoration: BoxDecoration(color: d),
             ),
             //Navigation Menu
             SafeArea(
@@ -152,6 +153,7 @@ class _HomeViewState extends State<HomeView> {
                           ..setEntry(0, 3, 200 * val)
                           ..rotateY((pi / 6) * val),
                         child: Scaffold(
+                          backgroundColor: CupertinoColors.white,
                           body: GetBuilder<HomeViewModel>(
                             init: Get.find<HomeViewModel>(),
                             builder: (controller) => controller.loading
@@ -289,9 +291,10 @@ class ListViewCategories extends StatelessWidget {
                       height: 80.h,
                       width: 80.w,
                       child: Padding(
-                        padding: EdgeInsets.all(5.h),
+                        padding: EdgeInsets.all(10.h),
                         child: Image.network(
-                          controller.categories[index].image,
+
+                          controller.categories[index].image,height: 40,width: 40,
                         ),
                       ),
                     ),

@@ -128,7 +128,7 @@ class CheckoutView extends StatelessWidget {
                         ),
                         CustomTextFormField(
                           title: 'Phone Number',
-                          hintText: '+20123456789',
+                          hintText: '+your Number',
                           keyboardType: TextInputType.phone,
                           validatorFn: (value) {
                             if (value!.isEmpty || value.length < 10)

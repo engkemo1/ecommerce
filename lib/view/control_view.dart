@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../constants.dart';
 import '../core/viewmodel/auth_viewmodel.dart';
 import '../core/viewmodel/control_viewmodel.dart';
 import '../core/network_viewmodel.dart';
@@ -38,7 +39,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           elevation: 0,
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: d,
           currentIndex: controller.navigatorIndex,
           onTap: (index) {
             controller.changeCurrentScreen(index);
