@@ -48,7 +48,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
           child: Column(
             children: [
               Container(
-                color: c,
+                color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.all(16.h),
                   child: Form(

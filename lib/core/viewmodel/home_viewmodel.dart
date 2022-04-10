@@ -6,6 +6,8 @@ import '../../model/category_model.dart';
 import '../../model/product_model.dart';
 
 class HomeViewModel extends GetxController {
+  String? name, price, image, description, size, category, productId;
+  String? nameG, imageG;
   List<CategoryModel> _categories = [];
   List<ProductModel> _products = [];
 
@@ -27,7 +29,7 @@ class HomeViewModel extends GetxController {
   _getCategoriesFromFireStore() async {
     _loading = true;
     List<QueryDocumentSnapshot> categoriesSnapshot =
-        await FirestoreHome().getCategoriesFromFirestore();
+    await FirestoreHome().getCategoriesFromFirestore();
     categoriesSnapshot.forEach((category) {
       _categories
           .add(CategoryModel.fromJson(category.data() as Map<String, dynamic>));
@@ -39,7 +41,7 @@ class HomeViewModel extends GetxController {
   _getProductsFromFireStore() async {
     _loading = true;
     List<QueryDocumentSnapshot> productsSnapshot =
-        await FirestoreHome().getProductsFromFirestore();
+    await FirestoreHome().getProductsFromFirestore();
     productsSnapshot.forEach((product) {
       _products
           .add(ProductModel.fromJson(product.data() as Map<String, dynamic>));
@@ -47,4 +49,31 @@ class HomeViewModel extends GetxController {
     _loading = false;
     update();
   }
+
+  addProductToFireStore() async {
+    CollectionReference pro = FirebaseFirestore.instance.collection('products');
+
+    pro.add(ProductModel(
+        name: name!,
+        image: image!,
+        description: description!,
+        size: size!,
+        price: price!,
+        category: category!,
+        productId: productId!)
+        .toJson());
+  }
+
+  addCategoryToFireStore() async {
+    CollectionReference Cat = FirebaseFirestore.instance.collection(
+        'categories');
+
+    Cat.add(CategoryModel(
+      name: nameG!,
+      image: imageG!,
+    )
+        .toJson());
+  }
+
+
 }

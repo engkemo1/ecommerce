@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:ecommerce/core/viewmodel/profile_viewmodel.dart';
+import 'package:ecommerce/view/Add%20product.dart';
+import 'package:ecommerce/view/AddCategories.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,42 +68,48 @@ class _HomeViewState extends State<HomeView> {
                     Expanded(
                       child: ListView(
                         children: [
-                          ListTile(
-                            leading: Icon(
-                              Icons.home,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              "Home",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            onTap: () {
-                              // Get.to(() => HomeScreen(),
-                              //     transition: Transition.downToUp,
-                              //     duration: Duration(milliseconds: 500));
-                            },
-                          ),
-                          ListTile(
-                            leading: Icon(
-                              Icons.person,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              "Add Task",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            onTap: () {
-                              // Get.to(() => AddTaskScreen(),
-                              //     transition: Transition.downToUp,
-                              //     duration: Duration(milliseconds: 500));
-                            },
-                          ),
+                          Get.put(ProfileViewModel()).currentUser?.email ==
+                                  "kemoeng40@gmail.com"
+                              ? ListTile(
+                                  leading: Icon(
+                                    Icons.category,
+                                    color: Colors.black,
+                                  ),
+                                  title: Text(
+                                    "Add Category",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Get.to(() => AddCategory(),
+                                        transition: Transition.downToUp,
+                                        duration: Duration(milliseconds: 500));
+                                  },
+                                )
+                              : Container(),
+                          Get.put(ProfileViewModel()).currentUser?.email ==
+                                  "kemoeng40@gmail.com"
+                              ? ListTile(
+                                  leading: Icon(
+                                    Icons.add_circle,
+                                    color: Colors.black,
+                                  ),
+                                  title: Text(
+                                    "Add Product",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Get.to(() => AddProduct(),
+                                        transition: Transition.downToUp,
+                                        duration: Duration(milliseconds: 500));
+                                  },
+                                )
+                              : Container(),
                           ListTile(
                             leading: Icon(
                               Icons.shopping_cart_outlined,
@@ -161,14 +170,37 @@ class _HomeViewState extends State<HomeView> {
                                     child: CircularProgressIndicator(),
                                   )
                                 : SingleChildScrollView(
-                                    padding: EdgeInsets.only(
-                                        top: 65.h,
-                                        bottom: 14.h,
-                                        right: 16.w,
-                                        left: 16.w),
                                     child: Column(
                                       children: [
                                         Container(
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(20),
+                                                  bottomLeft:
+                                                      Radius.circular(20)),
+                                              color: d),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(width: 10,),
+
+                                              Text(
+                                                "What do you want to \n buyToday",
+                                                style: TextStyle(fontSize: 20),
+                                              ),
+                                              SizedBox(width: 30,),
+                                              Image.asset(
+                                                "assets/sale.png",
+                                                width: 100,
+                                                height: 100,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: 30, right: 30, top: 30),
                                           height: 49.h,
                                           decoration: BoxDecoration(
                                             color: Colors.grey.shade200,
@@ -262,7 +294,7 @@ class ListViewCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
       builder: (controller) => Container(
-        height: 120.h,
+        height: 150.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: controller.categories.length,
@@ -280,25 +312,19 @@ class ListViewCategories extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  Material(
-                    elevation: 1,
-                    borderRadius: BorderRadius.circular(50.r),
-                    child: Container(
+                  Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.r),
-                        color: Colors.white,
-                      ),
+                          borderRadius: BorderRadius.circular(50.r),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(offset: Offset(1, 3), blurRadius: 3)
+                          ]),
                       height: 80.h,
                       width: 80.w,
-                      child: Padding(
-                        padding: EdgeInsets.all(10.h),
-                        child: Image.network(
-
-                          controller.categories[index].image,height: 40,width: 40,
-                        ),
-                      ),
-                    ),
-                  ),
+                      child: CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(controller.categories[index].image),
+                      )),
                   CustomText(
                     text: controller.categories[index].name,
                     fontSize: 15,
@@ -349,7 +375,7 @@ class ListViewProducts extends StatelessWidget {
                       width: 164.w,
                       child: Image.network(
                         controller.products[index].image,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                     CustomText(

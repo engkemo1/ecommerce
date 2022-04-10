@@ -4,7 +4,6 @@ import '../helper/hexColor_extension.dart';
 
 class ProductModel {
   late String name, image, description, size, price, productId, category;
-  late Color color;
 
   ProductModel({
     required this.name,
@@ -14,7 +13,6 @@ class ProductModel {
     required this.price,
     required this.productId,
     required this.category,
-    required this.color,
   });
 
   ProductModel.fromJson(Map<dynamic, dynamic> map) {
@@ -25,8 +23,7 @@ class ProductModel {
     price = map['price'];
     productId = map['productId'];
     category = map['category'];
-    color = HexColor.fromHex(map['color']);
-  }
+     }
 
   toJson() {
     return {
@@ -34,7 +31,6 @@ class ProductModel {
       'image': image,
       'description': description,
       'size': size,
-      'color': color.toString(),
       'price': price,
       'productId': productId,
       'category': category,

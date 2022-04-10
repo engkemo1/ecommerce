@@ -77,7 +77,6 @@ class ProductDetailView extends StatelessWidget {
                                 width: 22.w,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: _productModel.color,
                                 ),
                               ),
                             ),

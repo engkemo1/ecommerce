@@ -26,7 +26,7 @@ class LoginView extends GetWidget<AuthViewModel> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: c,
+                    color: Colors.white,
 borderRadius: BorderRadius.only(topRight: Radius.circular(150),bottomRight:Radius.circular(50),bottomLeft: Radius.circular(150),topLeft: Radius.circular(50) )
                   ),
                   child: Padding(
